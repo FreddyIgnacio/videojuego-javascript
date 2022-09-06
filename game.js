@@ -31,6 +31,10 @@ let enemyPositions = [];
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize)
 
+function fixNumber(n) {
+    return Number(n.toFixed(2));
+}
+
 function setCanvasSize() {
 
     if(window.innerHeight > window.innerWidth) {
@@ -39,10 +43,14 @@ function setCanvasSize() {
         canvasSize = window.innerHeight * 0.8;
     }
 
+    canvasSize = Number(canvasSize.toFixed(0))
     canvas.setAttribute("widht", canvasSize);
     canvas.setAttribute("height", canvasSize);
 
     elementsSize = canvasSize / 10;
+
+    playerPosition.x = undefined;
+    playerPosition.y = undefined;
     startGame();    
 }
 
@@ -83,7 +91,7 @@ function startGame() {
                 if (!playerPosition.x && !playerPosition.y) {
                     playerPosition.x = posX;
                     playerPosition.y = posY;
-                    console.log({playerPosition});
+                    //console.log({playerPosition});
                 }
             }  else if (col == 'I') {
                 giftPosition.x = posX;
